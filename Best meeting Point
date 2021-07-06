@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Main {
+
+    // ~~~~~~~~~~~~~~~~~User Section~~~~~~~~~~~~~~~~
+    public static int minTotalDistance(int[][] grid) {
+        // Write your code here
+        // calculate x
+        
+        ArrayList< Integer > xcord = new ArrayList<>();
+        for(int i = 0 ; i < grid.length ; i++){
+            for(int j = 0 ; j < grid[0].length ; j++){
+                if(grid[i][j] == 1){
+                    xcord.add(i);
+                }
+            }
+        }    
+            // calculate y
+            
+        ArrayList< Integer > ycord = new ArrayList<>();
+        for(int j = 0 ; j < grid[0].length ; j++){   
+            for(int i = 0 ; i < grid.length ; i++){
+                if(grid[i][j] == 1){
+                    ycord.add(j);
+                }
+            }
+        }    
+            // get median
+            
+            int x = xcord.get(xcord.size()/2);
+            int y = ycord.get(ycord.size()/2);
+            
+            // calculate distance
+            //manhatten algo x2 - x1 + y2 - y1
+            int dist = 0;
+            
+            for(int xval : xcord){
+                dist += Math.abs(xval - x);
+            }
+            
+            for(int yval : ycord){
+                dist += Math.abs(yval - y);
+            }
+            // retur ans
+            return dist;
+        
+    }
+
+    // ~~~~~~~~~~~~~~~Input Management~~~~~~~~~~~~~~
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+
+
+        int[][] grid = new int[n][m];
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                grid[i][j] = scn.nextInt();
+            }
+        }
+
+        int dist = minTotalDistance(grid);
+        System.out.println(dist);
+    }
+}
+
