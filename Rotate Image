@@ -1,0 +1,48 @@
+import java.util.*;
+
+public class Main {
+
+  // ~~~~~~~~~~~~~User Section~~~~~~~~~~~~~
+  public static void rotate(int[][] m) {
+    // write your code here
+    for(int i = 0 ; i < m.length ; i++){
+        for(int j = 0 ;  j < i ; j++){
+            int temp = m[i][j];
+            m[i][j] = m[j][i];
+            m[j][i] = temp;
+        }
+    }
+    
+    for(int i = 0 ; i < m.length ; i++){
+        int li = 0;
+        int ri = m[0].length - 1;
+        while(li < ri){
+            int temp = m[i][li];
+            m[i][li] = m[i][ri];
+            m[i][ri] = temp;
+            li++;
+            ri--;
+        }
+    }
+    
+  }
+
+  // ~~~~~~~~~~~Input Management~~~~~~~~~~~
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[][] matrix = new int[n][n];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        matrix[i][j] = scn.nextInt();
+      }
+    }
+    rotate(matrix);
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        System.out.print(matrix[i][j] + " ");
+      }
+      System.out.println();
+    }
+  }
+}
