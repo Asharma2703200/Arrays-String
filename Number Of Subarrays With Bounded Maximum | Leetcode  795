@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Main {
+
+  public static int numSubarrayBoundedMax(int[] arr, int l, int r) {
+    // write your code here
+    int si = 0;
+    int ei = 0;
+    int ans = 0;
+    int prev = 0;
+    int n = arr.length;
+    while(ei < n){
+        
+        if(l <= arr[ei] && arr[ei] <= r){
+            prev = ei - si + 1;
+            ans += prev;
+        }else if(arr[ei] < l){
+            ans += prev;
+        }else{
+            si = ei+1; 
+            prev = 0;
+        }
+        ei++;
+    }
+    return ans;
+  }
+
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = scn.nextInt();
+    }
+
+    int left = scn.nextInt();
+    int right = scn.nextInt();
+
+    int count = numSubarrayBoundedMax(arr, left, right);
+    System.out.println(count);
+  }
+}
