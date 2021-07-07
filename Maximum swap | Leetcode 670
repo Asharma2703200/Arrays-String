@@ -1,0 +1,62 @@
+brute force
+traverse all the great element to itself from i+ 1;
+o(n2)
+
+2md ,menthod
+store right max index  o(n)
+
+// o(n) solution o(1) space most efficient
+
+
+
+import java.util.*;
+
+public class Main {
+
+  // ~~~~~~~~~~User Section~~~~~~~~~~~
+  public static String maximumSwap(String num) {
+    // write your code here
+    char[] arr = num.toCharArray();
+   
+    int[] li = new int[10];
+    
+    for(int i = 0 ; i < arr.length ; i++){
+        int digit = arr[i] -'0';
+        li[digit] = i;
+    }
+    
+     boolean flag = false;
+    for (int i = 0; i < arr.length; i++)  {
+      for (int j = 9; j > arr[i] - '0'; j--) {
+        if (li[j] > i) {
+          swap(arr, li[j], i);
+          flag = true;
+          break;
+        }
+      }
+      if (flag == true) {
+        break;
+      }
+    }
+     
+    String res = "";
+    for(int i = 0 ; i < arr.length;i++){
+        res += arr[i];
+    }
+    return res;
+  }
+  
+  public static void swap(char [] arr , int i , int j){
+      char temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+  }
+
+  // ~~~~~~~~Input Management~~~~~~~~~
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    String str = scn.nextLine();
+    String ans = maximumSwap(str);
+    System.out.println(ans);
+  }
+}
