@@ -1,0 +1,19 @@
+method 1 ->
+
+two nested loops take a count variable for store the count of the integer
+
+method 2 ->
+
+hashing , store count of integrs and retur the odd occureence
+
+method 3 ->
+
+do xor of twp integer |
+same integer xor = 0
+diff xor = A(integer)
+
+int res = 0;
+for(int i = 0 ; i < arr.length;i++){
+   res = res ^ arr[i];
+}
+return res;
