@@ -1,0 +1,97 @@
+import java.util.*;
+
+public class Main {
+    
+    public static List<List<Integer>> twosum(int[] arr, int target, int si){
+        int n = arr.length;
+        
+        List<List<Integer>>  res = new ArrayList<>();
+        
+        if(n - si < 2){
+            return res;
+        }
+        
+        int li = si;
+        int ri = n -1;
+        
+        while(li < ri){
+            
+            if(li != si && arr[li] == arr[li - 1]){
+                li++;
+                continue;
+            }
+            
+            if(arr[li] + arr[ri] == target){
+                res.add(new ArrayList(Arrays.asList(arr[li] , arr[ri])));
+                li++;
+                ri--;
+            }else if(arr[li] + arr[ri] < target){
+                li++;
+            }else{
+                ri--;
+            }
+        }
+        return res;
+        
+     }
+    
+    public static List<List<Integer>> ksumhelper(int[] arr, int target, int k , int si){
+        
+        if(k == 2){
+            return twosum(arr , target , si);
+        }
+        
+        List<List<Integer>>  res = new ArrayList<>();
+        
+        int n = arr.length;
+        
+        if( n - si < k){
+            return res;
+        }
+        
+        for(int i = si ; i <= n - k;i++){
+            if(i != si  && arr[i] == arr[i - 1]) continue;
+            
+            int val1 = arr[i]; 
+            List<List<Integer>> subres = ksumhelper(arr , target - val1 , k - 1, i + 1);
+            
+            for(List<Integer> list : subres){
+                list.add(val1);
+                res.add(list);
+            }
+        }
+        return res;
+    } 
+
+  public static List<List<Integer>> kSum(int[] arr, int target, int k) {
+    // write your code here
+    Arrays.sort(arr);
+   return ksumhelper(arr , target , k , 0);
+  }
+ 
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++) {
+      arr[i] = scn.nextInt();
+    }
+    int target = scn.nextInt();
+    int k = scn.nextInt();
+    List<List<Integer>> res = kSum(arr, target, k);
+    ArrayList<String> finalResult = new ArrayList<>();
+    for (List<Integer> list : res) {
+      Collections.sort(list);
+      String ans = "";
+      for (int val : list) {
+        ans += val + " ";
+      }
+      finalResult.add(ans);
+    }
+    Collections.sort(finalResult);
+    for (String str : finalResult) {
+      System.out.println(str);
+    }
+  }
+
+}
