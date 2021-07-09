@@ -1,0 +1,23 @@
+method 1 
+
+2 nested loops and calculate for each
+
+method 2
+sort the array
+
+
+int i = 0;
+int j = 1;
+
+while(i < arr.length && j < arr.length){
+      
+   if(arr[j] - arr[i] == target){
+        
+      System.out.println("pair->" + arr[j] + " " + arr[i]);
+   }else if(arr[j] - arr[i] < n){
+      i++;
+   }else{
+      j++;
+   }
+    
+}
