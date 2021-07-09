@@ -1,0 +1,49 @@
+3
+1 5 5
+5
+3 4 5 5 10
+4
+5 5 10 20
+
+
+import java.util.*;
+public class Main {
+  public static void ans(int[] x , int[] y , int[] z){
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while(i < x.length && j < y .length && k < z.length){
+        if(x[i] == y[j] && y[j] == z[k]){
+            System.out.print(x[i] + " ");
+            i++;
+            j++;
+            k++;
+       }else if(x[i] < y[j]){
+           i++;
+       }else if(y[j] < z[k]){
+           j++;
+       }else{
+           k++;
+       }
+    }
+  }
+  public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[]a=new int[n];
+    for(int i = 0 ; i < n;i++){
+        a[i] = scn.nextInt();
+    }
+    int n1 = scn.nextInt();
+    int[]b=new int[n1];
+    for(int i = 0 ; i < n1;i++){
+        b[i] = scn.nextInt();
+    }
+    int n2 = scn.nextInt();
+    int[]c=new int[n2];
+    for(int i = 0 ; i < n2;i++){
+        c[i] = scn.nextInt();
+    }
+    ans(a , b , c);
+  }
+}
