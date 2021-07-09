@@ -1,0 +1,18 @@
+method 1 
+n2
+2 nested loops and calculate for each pair
+
+
+method 2 
+nlogn
+sort the array and calculate starting 2 and ending two pair max
+
+method 3 
+o(n)
+
+calculate 
+largest 
+second largest 
+smallest 
+second smallest
+ return max
